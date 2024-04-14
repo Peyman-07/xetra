@@ -9,6 +9,10 @@ awscli = "*"
 jupyter = "*"
 boto3 = "*"
 pyarrow = "*"
+pyyaml = "*"
+pylint = "*"
+moto = "==1.3.16"
+coverage = "*"
 
 [dev-packages]
 
