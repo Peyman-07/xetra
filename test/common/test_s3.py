@@ -240,10 +240,5 @@ class TestS3BucketConnectorMethods(unittest.TestCase):
                 # Log test after method execution
                 self.assertIn(log_exp, logm.output[0])
     
-
-        
-        
-        
-    
 if __name__ == "__main__":
     unittest.main()

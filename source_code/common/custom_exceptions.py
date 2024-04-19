@@ -7,3 +7,10 @@ class WrongFormatException(Exception):
     Exception that can be raised when the format type
     given as parameter is not supported.
     """
+
+class WrongMetaFileException(Exception):
+    """
+    WrongMetaFileException class
+
+    Exception that can be raised when meta file format is not correct
+    """

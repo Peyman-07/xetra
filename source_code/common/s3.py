@@ -2,11 +2,14 @@
 
 import os
 import logging
+import sys
+sys.path.append("/Users/pashkrof/surfdrive_general/DITTLAB/Courses/Data pipeline/production-ready ETL/venv/xetra/source_code/common")
 from io import StringIO, BytesIO
 import boto3
 import pandas as pd
-from constants import S3FileTypes
 from custom_exceptions import WrongFormatException
+from constants import S3FileTypes
+
 
 
 
@@ -32,16 +35,18 @@ class S3BucketConnector():
         self.secret_key = secret_key
         self._s3 = self.session.resource(service_name='s3', endpoint_url=endpoint_url)
         self._bucket = self._s3.Bucket(bucket)
+        self.s3_client = boto3.client('s3', region_name='eu-north-1', endpoint_url=endpoint_url)
+    
+
 
     def list_files_in_prefix(self, prefix: str):
         """
-        Listing all files with prefix on the S3 bucket
+        listing all files with a prefix on the S3 bucket
 
-        Args:
-            prefix (str): prefix on the S3 bucket that should be filtered with
+        :param prefix: prefix on the S3 bucket that should be filtered with
 
-        Returns:
-            files: list of all file names containing the prefix in the key
+        returns:
+          files: list of all the file names containing the prefix in the key
         """
         files = [obj.key for obj in self._bucket.objects.filter(Prefix=prefix)]
         return files
